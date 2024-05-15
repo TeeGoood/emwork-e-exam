@@ -5,7 +5,7 @@ export const getExpense = async (req, res) => {
     let expense = await ExpenseModel.find({});
 
     if (req.query.month && req.query.year) {
-      console.log("debug");
+      console.log(req.query)
       const month = parseInt(req.query.month);
       const year = parseInt(req.query.year);
 
@@ -18,7 +18,23 @@ export const getExpense = async (req, res) => {
       });
     }
 
-    res.json(expense);
+    let totalIncome = 0;
+    let totalOutcome = 0;
+    expense.forEach((e) => {
+      if (e.type == "income") {
+        totalIncome += e.amount;
+      } else {
+        totalOutcome += e.amount;
+      }
+    });
+    const totalAll = totalIncome - totalOutcome;
+
+    res.json({
+      expense,
+      income: totalIncome,
+      outcome: totalOutcome,
+      total: totalAll,
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).json("cannot get expense");
