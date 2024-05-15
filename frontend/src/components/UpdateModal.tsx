@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Expense } from "../types";
 import { FetchFunctionContext } from "../App";
 import axios from "axios";
@@ -6,7 +6,6 @@ import ReactDatePicker from "react-datepicker";
 
 const UpdateModal = ({
   propData,
-  isOpen,
   setisOpen,
 }: {
   propData: Expense;

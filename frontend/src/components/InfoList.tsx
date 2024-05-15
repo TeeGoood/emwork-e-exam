@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import InfoCard from "./InfoCard";
 import { DataContext } from "../App";
 
@@ -8,7 +8,7 @@ const InfoList = () => {
   return (
     <div>
       {data.expense.map((e) => (
-        <InfoCard data={e} key={e._id}/>
+        <InfoCard data={e} key={e._id} />
       ))}
     </div>
   );
